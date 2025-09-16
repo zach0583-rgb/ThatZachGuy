@@ -8,84 +8,78 @@ import PersonalGallery from './PersonalGallery';
 const ArtistSuites = ({ position = [0, 5, 0] }) => {
   const [activeSuite, setActiveSuite] = useState(null);
   
-  // Your REAL artist friends data - Twin Peaks Hotel Edition
+  // Your artist friends - clean room assignments
   const artistFriends = [
     {
       id: 'suite-1',
       name: 'Christopher Royal King',
-      medium: 'The "Royal" Artist',
-      roomKey: 'ROOM-201-TZG',
+      roomKey: 'ROOM-201-CK',
       roomNumber: '201',
+      initials: 'CK',
       doorColor: '#FFD700',
       personalColor: '#FFF8DC',
       lastSeen: '3 days ago',
       artCount: 12,
-      bio: 'Still thinks he\'s royalty, Room 201 suits him',
       isOnline: false
     },
     {
       id: 'suite-2', 
       name: 'Philip Nanos',
-      medium: 'The Experimenter',
-      roomKey: 'ROOM-202-TZG',
+      roomKey: 'ROOM-202-PN',
       roomNumber: '202',
+      initials: 'PN',
       doorColor: '#4169E1',
       personalColor: '#87CEEB',
       lastSeen: '1 week ago',
       artCount: 8,
-      bio: 'Room 202 - magnificent bastard with questionable taste',
       isOnline: true
     },
     {
       id: 'suite-3',
       name: 'Jeremy Galindo', 
-      medium: 'Chaos Creator',
-      roomKey: 'ROOM-203-TZG',
+      roomKey: 'ROOM-203-JG',
       roomNumber: '203',
+      initials: 'JG',
       doorColor: '#FF4500',
       personalColor: '#FFA07A',
       lastSeen: 'online now',
       artCount: 24,
-      bio: 'Room 203 - experimental phase survivor, redemption pending',
       isOnline: true
     },
     {
       id: 'suite-4',
       name: 'Joshua Brock',
-      medium: 'The Bold One',
-      roomKey: 'ROOM-204-TZG',
+      roomKey: 'ROOM-204-JB',
       roomNumber: '204',
+      initials: 'JB',
       doorColor: '#32CD32',
       personalColor: '#98FB98',
       lastSeen: '2 days ago',
       artCount: 6,
-      bio: 'Room 204 - stubborn asshole, surprisingly good when focused',
       isOnline: false
     },
     {
       id: 'suite-5',
       name: 'Chris Andrews',
-      medium: 'The Quiet Genius',
-      roomKey: 'ROOM-205-TZG',
+      roomKey: 'ROOM-205-CA',
       roomNumber: '205',
+      initials: 'CA',
       doorColor: '#9370DB',
       personalColor: '#DDA0DD',
       lastSeen: '5 days ago', 
       artCount: 15,
-      bio: 'Room 205 - not the royal Chris, but the one with taste',
       isOnline: false
     },
     {
       id: 'suite-6',
       name: 'Eric Kriefels',
-      medium: 'Wildcard Genius/Disaster',
-      roomKey: 'ROOM-206-TZG',
+      roomKey: 'ROOM-206-EK',
       roomNumber: '206',
+      initials: 'EK',
       doorColor: '#FF1493',
       personalColor: '#FFB6C1',
       lastSeen: 'yesterday',
       artCount: 31,
-      bio: 'Room 206 - brilliant or garbage, no in-between',
       isOnline: false
     }
   ];
