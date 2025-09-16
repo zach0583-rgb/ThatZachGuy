@@ -2,10 +2,6 @@ import React, { useRef, useState } from 'react';
 import { Box, Cylinder, Plane, Text, Ring, Sphere } from '@react-three/drei';
 import { useBox } from '@react-three/cannon';
 import * as THREE from 'three';
-import ArtGallery from './ArtGallery';
-import MusicStudio from './MusicStudio';
-import CreativeMeetingRoom from './CreativeMeetingRoom';
-import WritersNook from './WritersNook';
 
 const ArtistColony = ({ position = [15, 0, 0] }) => {
   const [activeBuilding, setActiveBuilding] = useState(null);
