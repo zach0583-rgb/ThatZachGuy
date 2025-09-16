@@ -71,8 +71,8 @@ async def get_status_checks():
 @api_router.get("/health")
 async def health_check():
     try:
-        # Test database connection
-        await db.admin.command('ping')
+        # Test database connection with a simple operation
+        await db.users.find_one({})
         return {"status": "healthy", "database": "connected"}
     except Exception as e:
         raise HTTPException(status_code=503, detail=f"Database connection failed: {str(e)}")
