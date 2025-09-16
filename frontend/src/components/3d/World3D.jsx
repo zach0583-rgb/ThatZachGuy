@@ -177,7 +177,8 @@ const World3D = () => {
                     ...suiteData,
                     personalColor: '#FF69B4' // You could map this from suite data
                   }} 
-                  position={[0, 0, 0]} 
+                  position={[0, 0, 0]}
+                  onUploadSuccess={handleUploadSuccess}
                 />
               ) : (
                 // Main World View
