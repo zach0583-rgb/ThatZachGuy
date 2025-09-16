@@ -132,6 +132,18 @@ backend:
         -agent: "main"
         -comment: "Need to create friend invitation mechanism via email/text/Instagram"
 
+  - task: "2D world scenes API endpoint"
+    implemented: false
+    working: false
+    file: "backend/server.py"
+    stuck_count: 0
+    priority: "medium"
+    needs_retesting: false
+    status_history:
+        -working: false
+        -agent: "testing"
+        -comment: "2D world fails to load due to missing /api/scenes endpoint. Backend returns 307 redirects for /api/scenes requests, causing frontend to fail with 'Failed to initialize scene: AxiosError'. This prevents 2D world functionality from working."
+
 frontend:
   - task: "Remove TZG from room keys display"
     implemented: true
