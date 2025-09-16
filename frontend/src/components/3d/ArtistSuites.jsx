@@ -254,7 +254,7 @@ const ArtistSuites = ({ position = [0, 5, 0] }) => {
             anchorX="center"
             anchorY="middle"
           >
-            TZG
+            {friend.initials}
           </Text>
         </group>
         
