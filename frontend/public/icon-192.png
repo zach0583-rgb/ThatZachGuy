@@ -1,0 +1,42 @@
+<svg width="512" height="512" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <!-- Green Tree Background -->
+  <circle cx="256" cy="256" r="240" fill="#2F4F2F"/>
+  
+  <!-- Tree Trunk -->
+  <rect x="236" y="380" width="40" height="100" fill="#8B4513" rx="5"/>
+  
+  <!-- Tree Foliage -->
+  <circle cx="256" cy="320" r="120" fill="#228B22"/>
+  <circle cx="200" cy="280" r="80" fill="#32CD32"/>
+  <circle cx="312" cy="280" r="80" fill="#32CD32"/>
+  <circle cx="256" cy="240" r="90" fill="#228B22"/>
+  
+  <!-- Owl Body -->
+  <ellipse cx="256" cy="260" rx="45" ry="60" fill="#8B4513"/>
+  
+  <!-- Owl Wings -->
+  <ellipse cx="225" cy="270" rx="15" ry="35" fill="#654321"/>
+  <ellipse cx="287" cy="270" rx="15" ry="35" fill="#654321"/>
+  
+  <!-- Owl Head -->
+  <circle cx="256" cy="220" r="35" fill="#A0522D"/>
+  
+  <!-- Owl Eyes -->
+  <circle cx="245" cy="215" r="12" fill="#FFF"/>
+  <circle cx="267" cy="215" r="12" fill="#FFF"/>
+  <circle cx="245" cy="215" r="6" fill="#000"/>
+  <circle cx="267" cy="215" r="6" fill="#000"/>
+  
+  <!-- Owl Beak -->
+  <polygon points="256,225 250,235 262,235" fill="#FF8C00"/>
+  
+  <!-- Owl Ear Tufts -->
+  <polygon points="230,195 240,205 225,210" fill="#8B4513"/>
+  <polygon points="282,195 272,205 287,210" fill="#8B4513"/>
+  
+  <!-- Simple leaves decoration -->
+  <ellipse cx="180" cy="200" rx="8" ry="15" fill="#90EE90" transform="rotate(-30 180 200)"/>
+  <ellipse cx="332" cy="200" rx="8" ry="15" fill="#90EE90" transform="rotate(30 332 200)"/>
+  <ellipse cx="200" cy="350" rx="6" ry="12" fill="#90EE90" transform="rotate(-45 200 350)"/>
+  <ellipse cx="312" cy="350" rx="6" ry="12" fill="#90EE90" transform="rotate(45 312 350)"/>
+</svg>
