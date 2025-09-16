@@ -38,6 +38,9 @@ const PersonalGallery = ({ artistFriend, position = [0, 0, 0], onUploadSuccess }
   
   const handleUploadSuccess = (newArtwork) => {
     setRealArtwork(prev => [...prev, newArtwork]);
+    if (onUploadSuccess) {
+      onUploadSuccess(newArtwork);
+    }
   };
   
   // Mock personal art collection for fallback
