@@ -14,43 +14,49 @@ const RoomKeySystem = ({ onRoomAccess }) => {
   const { user } = useAuth();
   const { toast } = useToast();
 
-  // Available room keys for your ACTUAL ASSHOLE artist friends
+  // Available room keys for your ACTUAL ASSHOLE artist friends - Twin Peaks Hotel Style
   const roomKeys = {
-    'ROYAL-KING-2024': {
+    'ROOM-201-TZG': {
       suiteId: 'suite-1',
       artistName: 'Christopher Royal King',
-      medium: 'Artist',
-      personalMessage: 'Christopher Royal fucking King - yeah, I went with the full pretentious name. I made you a virtual art space. Your royal highness better not disappoint with the same mediocre shit from back in the day. Time to prove that name means something. 👑💀'
+      medium: 'The "Royal" Artist',
+      roomNumber: '201',
+      personalMessage: 'Christopher Royal fucking King - yeah, I went with the full pretentious name. Found this old brass key with the green Twin Peaks keychain in the back office. Room 201 is yours. Your royal highness better not disappoint with the same mediocre shit from back in the day. Time to prove that name means something. 👑💀'
     },
-    'NANOS-MAYHEM-2024': {
+    'ROOM-202-TZG': {
       suiteId: 'suite-2', 
       artistName: 'Philip Nanos',
-      medium: 'Artist',
-      personalMessage: 'Philip, you magnificent bastard. Remember when you thought you were the next big thing? Well, here\'s your chance to actually BE something. This studio better produce art that doesn\'t make me question our friendship. No pressure. 🎨😈'
+      medium: 'The Experimenter',
+      roomNumber: '202',
+      personalMessage: 'Philip, you magnificent bastard. Got you Room 202 - the green keychain is a little faded but it still works. Remember when you thought you were the next big thing? Well, here\'s your chance to actually BE something. This suite better produce art that doesn\'t make me question our friendship. No pressure. 🎨😈'
     },
-    'GALINDO-CHAOS-2024': {
+    'ROOM-203-TZG': {
       suiteId: 'suite-3',
       artistName: 'Jeremy Galindo',
-      medium: 'Artist', 
-      personalMessage: 'Jeremy, I still remember your "experimental phase" - we all suffered through it. This gallery is your redemption arc. Show me you\'ve actually learned something since then, or I\'m roasting you in front of everyone. 🔥💀'
+      medium: 'Chaos Creator', 
+      roomNumber: '203',
+      personalMessage: 'Jeremy, I still remember your "experimental phase" - we all suffered through it. Room 203 has that old Twin Peaks charm you always pretended to understand. This gallery is your redemption arc. Show me you\'ve actually learned something since then, or I\'m roasting you in front of everyone. 🔥💀'
     },
-    'BROCK-SMASH-2024': {
+    'ROOM-204-TZG': {
       suiteId: 'suite-4',
       artistName: 'Joshua Brock',
-      medium: 'Artist',
-      personalMessage: 'Josh, you stubborn asshole. Your art was always bold but half the time it looked like you threw paint at a wall and called it deep. This space is for you to prove you can actually finish something good. Don\'t fuck it up. 🎯😈'
+      medium: 'The Bold One',
+      roomNumber: '204',
+      personalMessage: 'Josh, you stubborn asshole. Room 204 - the key is as old and worn as your excuses for unfinished projects. Your art was always bold but half the time it looked like you threw paint at a wall and called it deep. This space is for you to prove you can actually finish something good. Don\'t fuck it up. 🎯😈'
     },
-    'ANDREWS-ATTACK-2024': {
+    'ROOM-205-TZG': {
       suiteId: 'suite-5',
       artistName: 'Chris Andrews',
-      medium: 'Artist',
-      personalMessage: 'Chris Andrews - not to be confused with the other Chris (Royal King thinks he\'s special). You were always the quiet one with surprisingly good taste. This suite better showcase that you didn\'t peak in your twenties. Surprise me. 🎨🔥'
+      medium: 'The Quiet Genius',
+      roomNumber: '205',
+      personalMessage: 'Chris Andrews - not to be confused with the other Chris (Royal King thinks he\'s special). Room 205 came with this vintage green keychain that actually matches your understated style. You were always the quiet one with surprisingly good taste. This suite better showcase that you didn\'t peak in your twenties. Surprise me. 🎨🔥'
     },
-    'KRIEFELS-KRAZY-2024': {
+    'ROOM-206-TZG': {
       suiteId: 'suite-6',
       artistName: 'Eric Kriefels', 
-      medium: 'Artist',
-      personalMessage: 'Eric fucking Kriefels - the wildcard. Your art was either brilliant or complete garbage, no in-between. This virtual space is perfect for your chaotic energy. Show me which Eric shows up - genius or disaster. 💻💀'
+      medium: 'Wildcard Genius/Disaster',
+      roomNumber: '206',
+      personalMessage: 'Eric fucking Kriefels - the wildcard gets the end room, 206. The brass key is tarnished and the green plastic keychain has seen better days - perfect for your chaotic energy. Your art was either brilliant or complete garbage, no in-between. Show me which Eric shows up - genius or disaster. 💻💀'
     }
   };
 
