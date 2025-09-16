@@ -108,8 +108,8 @@ Can't wait to see what you've been creating! 💕
     try {
       await navigator.clipboard.writeText(inviteInfo.message);
       toast({
-        title: "Invite Copied! 💌",
-        description: `Invitation for ${roomKeys[selectedSuite].artistName} copied to clipboard. Send it via email, text, or social media!`
+        title: "Roast Invite Copied! 💀",
+        description: `Brutal invitation for ${roomKeys[selectedSuite].artistName} copied to clipboard. Time to destroy them with nostalgia!`
       });
       
       setShowInviteDialog(false);
@@ -117,8 +117,8 @@ Can't wait to see what you've been creating! 💕
       setSelectedSuite('');
     } catch (err) {
       toast({
-        title: "Invite Ready! 📝", 
-        description: "Copy the message below and send it to your friend",
+        title: "Asshole Invite Ready! 🔥", 
+        description: "Copy the brutal message below and send it to your victim... I mean friend",
         variant: "default"
       });
     }
