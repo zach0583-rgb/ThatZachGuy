@@ -96,7 +96,6 @@ class SuiteInfo(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     suite_name: str
     room_number: str
-    artist_id: str
     artist_name: str
     initials: str
     room_key: str
