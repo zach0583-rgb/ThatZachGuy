@@ -16,13 +16,31 @@ import {
   KeyboardControls,
   ContactShadows
 } from '@react-three/drei';
-import { Physics, RigidBody, CuboidCollider } from '@react-three/cannon';
-import { EffectComposer, Bloom, Vignette, ChromaticAberration, ColorGrading } from '@react-three/postprocessing';
+import { Physics, usePlane, useBox } from '@react-three/cannon';
+import { EffectComposer, Bloom, Vignette, ChromaticAberration } from '@react-three/postprocessing';
 import * as THREE from 'three';
 import LogCabin from './LogCabin';
 import Forest from './Forest';
 import AtmosphericEffects from './AtmosphericEffects';
 import FirstPersonController from './FirstPersonController';
+
+const Ground = () => {
+  const [ref] = usePlane(() => ({ 
+    rotation: [-Math.PI / 2, 0, 0], 
+    position: [0, -0.5, 0],
+    type: 'Static'
+  }));
+
+  return (
+    <Plane ref={ref} args={[100, 100]} receiveShadow>
+      <meshStandardMaterial 
+        color="#2c5530" 
+        roughness={0.8}
+        metalness={0.1}
+      />
+    </Plane>
+  );
+};
 
 const World3D = () => {
   const [enableControls, setEnableControls] = useState(false);
@@ -77,16 +95,7 @@ const World3D = () => {
               <pointLight position={[-5, 2, -5]} intensity={0.3} color="#4a90e2" />
               
               {/* Ground Plane */}
-              <RigidBody type="fixed" position={[0, -0.5, 0]}>
-                <Plane args={[100, 100]} rotation={[-Math.PI / 2, 0, 0]} receiveShadow>
-                  <meshStandardMaterial 
-                    color="#2c5530" 
-                    roughness={0.8}
-                    metalness={0.1}
-                  />
-                </Plane>
-                <CuboidCollider args={[50, 0.1, 50]} />
-              </RigidBody>
+              <Ground />
 
               {/* Log Cabin */}
               <LogCabin position={[0, 0, 0]} />
@@ -121,12 +130,6 @@ const World3D = () => {
                 darkness={0.3}
               />
               <ChromaticAberration offset={[0.0005, 0.0005]} />
-              <ColorGrading
-                brightness={-0.1}
-                contrast={0.2}
-                saturation={-0.1}
-                hue={0.05}
-              />
             </EffectComposer>
           </Suspense>
         </Canvas>
