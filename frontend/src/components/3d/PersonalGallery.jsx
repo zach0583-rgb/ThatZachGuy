@@ -383,6 +383,15 @@ const PersonalGallery = ({ artistFriend, position = [0, 0, 0] }) => {
           decay={2}
         />
       ))}
+      
+      {/* Art Upload Interface - positioned as overlay */}
+      <div className="absolute top-20 right-4 z-50">
+        <ArtUpload 
+          suiteId={artistFriend.id}
+          suiteName={artistFriend.name}
+          onUploadSuccess={handleUploadSuccess}
+        />
+      </div>
     </group>
   );
 };
