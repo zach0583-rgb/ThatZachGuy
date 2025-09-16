@@ -106,16 +106,16 @@ user_problem_statement: Remove TZG from room keys, implement simple art sharing 
 
 backend:
   - task: "Art upload API for rooms"
-    implemented: false
+    implemented: true
     working: "NA"
-    file: "backend/routes/art.py"
+    file: "backend/routes/artwork.py"
     stuck_count: 0
     priority: "high"
-    needs_retesting: false
+    needs_retesting: true
     status_history:
         -working: "NA"
         -agent: "main"
-        -comment: "Planning to create art upload system for personal artist suites"
+        -comment: "Created complete artwork API with file upload, suite management, and CRUD operations. Backend restarted successfully."
 
   - task: "Friend invitation system API"
     implemented: false
