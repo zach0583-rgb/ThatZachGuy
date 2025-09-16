@@ -29,6 +29,7 @@ import ArtSharingSystem from './ArtSharingSystem';
 import ArtistSuites from './ArtistSuites';
 import RoomKeySystem from './RoomKeySystem';
 import PersonalGallery from './PersonalGallery';
+import ArtUpload from '../ArtUpload';
 
 const Ground = () => {
   const [ref] = usePlane(() => ({ 
