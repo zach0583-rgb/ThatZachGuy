@@ -75,6 +75,11 @@ const World3D = () => {
     setSuiteData(null);
   };
 
+  const handleUploadSuccess = (newArtwork) => {
+    // Artwork uploaded successfully - could show notification or refresh data
+    console.log('New artwork uploaded:', newArtwork);
+  };
+
   return (
     <div className="h-screen w-full relative">
       {/* Instructions Overlay */}
