@@ -86,14 +86,19 @@ const Bush = ({ position, scale = 1 }) => {
   );
 };
 
-const Forest = () => {
+const Forest = ({ density = 0.8, isMobile = false }) => {
   // Generate forest positions in a realistic pattern
   const forestElements = useMemo(() => {
     const elements = [];
     
+    // Adjust tree count based on mobile and density
+    const baseTreeCount = isMobile ? 80 : 150;
+    const treeCount = Math.floor(baseTreeCount * density);
+    const bushCount = Math.floor((isMobile ? 60 : 100) * density);
+    
     // Dense forest ring around the cabin
-    for (let i = 0; i < 150; i++) {
-      const angle = (i / 150) * Math.PI * 2;
+    for (let i = 0; i < treeCount; i++) {
+      const angle = (i / treeCount) * Math.PI * 2;
       const distance = 15 + Math.random() * 25; // Start forest at distance from cabin
       const x = Math.cos(angle) * distance + (Math.random() - 0.5) * 10;
       const z = Math.sin(angle) * distance + (Math.random() - 0.5) * 10;
@@ -110,8 +115,8 @@ const Forest = () => {
     }
     
     // Add undergrowth bushes
-    for (let i = 0; i < 100; i++) {
-      const angle = (i / 100) * Math.PI * 2;
+    for (let i = 0; i < bushCount; i++) {
+      const angle = (i / bushCount) * Math.PI * 2;
       const distance = 12 + Math.random() * 30;
       const x = Math.cos(angle) * distance + (Math.random() - 0.5) * 8;
       const z = Math.sin(angle) * distance + (Math.random() - 0.5) * 8;
@@ -124,8 +129,9 @@ const Forest = () => {
       });
     }
     
-    // Coastal elements - add some closer to water
-    for (let i = 0; i < 30; i++) {
+    // Coastal elements - add some closer to water (reduced for mobile)
+    const coastalCount = isMobile ? 15 : 30;
+    for (let i = 0; i < coastalCount * density; i++) {
       const x = -40 + Math.random() * 80;
       const z = -35 - Math.random() * 15; // Behind the forest
       
@@ -138,7 +144,7 @@ const Forest = () => {
     }
     
     return elements;
-  }, []);
+  }, [density, isMobile]);
 
   return (
     <group>
