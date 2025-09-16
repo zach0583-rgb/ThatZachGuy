@@ -14,49 +14,49 @@ const RoomKeySystem = ({ onRoomAccess }) => {
   const { user } = useAuth();
   const { toast } = useToast();
 
-  // Available room keys for your ACTUAL ASSHOLE artist friends - Twin Peaks Hotel Style
+  // Room keys - just the essentials
   const roomKeys = {
-    'ROOM-201-TZG': {
+    'ROOM-201-CK': {
       suiteId: 'suite-1',
       artistName: 'Christopher Royal King',
-      medium: 'The "Royal" Artist',
       roomNumber: '201',
-      personalMessage: 'Christopher Royal fucking King - yeah, I went with the full pretentious name. Found this old brass key with the green Twin Peaks keychain in the back office. Room 201 is yours. Your royal highness better not disappoint with the same mediocre shit from back in the day. Time to prove that name means something. 👑💀'
+      initials: 'CK',
+      personalMessage: 'Twin Peaks Lodge - Artist Suites\nRoom 201 - CK\n\nKey attached.'
     },
-    'ROOM-202-TZG': {
+    'ROOM-202-PN': {
       suiteId: 'suite-2', 
       artistName: 'Philip Nanos',
-      medium: 'The Experimenter',
       roomNumber: '202',
-      personalMessage: 'Philip, you magnificent bastard. Got you Room 202 - the green keychain is a little faded but it still works. Remember when you thought you were the next big thing? Well, here\'s your chance to actually BE something. This suite better produce art that doesn\'t make me question our friendship. No pressure. 🎨😈'
+      initials: 'PN',
+      personalMessage: 'Twin Peaks Lodge - Artist Suites\nRoom 202 - PN\n\nKey attached.'
     },
-    'ROOM-203-TZG': {
+    'ROOM-203-JG': {
       suiteId: 'suite-3',
       artistName: 'Jeremy Galindo',
-      medium: 'Chaos Creator', 
       roomNumber: '203',
-      personalMessage: 'Jeremy, I still remember your "experimental phase" - we all suffered through it. Room 203 has that old Twin Peaks charm you always pretended to understand. This gallery is your redemption arc. Show me you\'ve actually learned something since then, or I\'m roasting you in front of everyone. 🔥💀'
+      initials: 'JG',
+      personalMessage: 'Twin Peaks Lodge - Artist Suites\nRoom 203 - JG\n\nKey attached.'
     },
-    'ROOM-204-TZG': {
+    'ROOM-204-JB': {
       suiteId: 'suite-4',
       artistName: 'Joshua Brock',
-      medium: 'The Bold One',
       roomNumber: '204',
-      personalMessage: 'Josh, you stubborn asshole. Room 204 - the key is as old and worn as your excuses for unfinished projects. Your art was always bold but half the time it looked like you threw paint at a wall and called it deep. This space is for you to prove you can actually finish something good. Don\'t fuck it up. 🎯😈'
+      initials: 'JB',
+      personalMessage: 'Twin Peaks Lodge - Artist Suites\nRoom 204 - JB\n\nKey attached.'
     },
-    'ROOM-205-TZG': {
+    'ROOM-205-CA': {
       suiteId: 'suite-5',
       artistName: 'Chris Andrews',
-      medium: 'The Quiet Genius',
       roomNumber: '205',
-      personalMessage: 'Chris Andrews - not to be confused with the other Chris (Royal King thinks he\'s special). Room 205 came with this vintage green keychain that actually matches your understated style. You were always the quiet one with surprisingly good taste. This suite better showcase that you didn\'t peak in your twenties. Surprise me. 🎨🔥'
+      initials: 'CA',
+      personalMessage: 'Twin Peaks Lodge - Artist Suites\nRoom 205 - CA\n\nKey attached.'
     },
-    'ROOM-206-TZG': {
+    'ROOM-206-EK': {
       suiteId: 'suite-6',
       artistName: 'Eric Kriefels', 
-      medium: 'Wildcard Genius/Disaster',
       roomNumber: '206',
-      personalMessage: 'Eric fucking Kriefels - the wildcard gets the end room, 206. The brass key is tarnished and the green plastic keychain has seen better days - perfect for your chaotic energy. Your art was either brilliant or complete garbage, no in-between. Show me which Eric shows up - genius or disaster. 💻💀'
+      initials: 'EK',
+      personalMessage: 'Twin Peaks Lodge - Artist Suites\nRoom 206 - EK\n\nKey attached.'
     }
   };
 
