@@ -109,6 +109,17 @@ const World3D = () => {
       {/* Room Key System - only show if not in a suite */}
       {!accessedSuite && <RoomKeySystem onRoomAccess={handleRoomAccess} />}
 
+      {/* Art Upload Interface - only show when in a suite */}
+      {accessedSuite && (
+        <div className="absolute top-20 right-4 z-50">
+          <ArtUpload 
+            suiteId={accessedSuite}
+            suiteName={suiteData?.artistName || 'Artist Suite'}
+            onUploadSuccess={handleUploadSuccess}
+          />
+        </div>
+      )}
+
       {/* Artist Colony Toggle */}
       {!accessedSuite && (
         <div className="absolute bottom-4 right-4 z-10">
