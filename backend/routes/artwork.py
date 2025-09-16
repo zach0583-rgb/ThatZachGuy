@@ -7,9 +7,8 @@ import aiofiles
 from datetime import datetime
 import json
 
-from ..models.artwork import Artwork, ArtworkCreate, ArtworkUpdate, ArtworkResponse, SuiteInfo
-from ..models.user import User
-from ..auth import verify_token
+from models.artwork import Artwork, ArtworkCreate, ArtworkUpdate, ArtworkResponse, SuiteInfo
+from models.user import User
 from motor.motor_asyncio import AsyncIOMotorClient
 
 router = APIRouter()
