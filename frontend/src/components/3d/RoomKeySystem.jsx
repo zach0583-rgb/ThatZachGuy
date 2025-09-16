@@ -14,43 +14,43 @@ const RoomKeySystem = ({ onRoomAccess }) => {
   const { user } = useAuth();
   const { toast } = useToast();
 
-  // Available room keys for your ASSHOLE artist friends
+  // Available room keys for your ACTUAL ASSHOLE artist friends
   const roomKeys = {
-    'PAINT-DREAMS-2024': {
+    'ROYAL-KING-2024': {
       suiteId: 'suite-1',
-      artistName: 'Sarah Mitchell',
-      medium: 'Painter',
-      personalMessage: 'Sarah, I made you a virtual art space. Your stuff better not suck as much as it did in college. Still waiting for you to paint something that doesn\'t look like a toddler\'s finger painting. Prove me wrong. 🎨💀'
+      artistName: 'Christopher Royal King',
+      medium: 'Artist',
+      personalMessage: 'Christopher Royal fucking King - yeah, I went with the full pretentious name. I made you a virtual art space. Your royal highness better not disappoint with the same mediocre shit from back in the day. Time to prove that name means something. 👑💀'
     },
-    'GUITAR-HERO-2024': {
+    'NANOS-MAYHEM-2024': {
       suiteId: 'suite-2', 
-      artistName: 'Marcus Rodriguez',
-      medium: 'Musician',
-      personalMessage: 'Marcus, I still have that terrible demo tape from \'03. This studio better produce something that doesn\'t make dogs howl. Your chord progressions were trash then - let\'s see if age improved your taste. 🎸😈'
+      artistName: 'Philip Nanos',
+      medium: 'Artist',
+      personalMessage: 'Philip, you magnificent bastard. Remember when you thought you were the next big thing? Well, here\'s your chance to actually BE something. This studio better produce art that doesn\'t make me question our friendship. No pressure. 🎨😈'
     },
-    'LENS-MAGIC-2024': {
+    'GALINDO-CHAOS-2024': {
       suiteId: 'suite-3',
-      artistName: 'Elena Kowalski',
-      medium: 'Photographer', 
-      personalMessage: 'Elena, remember when you said my photos looked like a blind monkey took them? Well, your composition was shit too. Now you can show me if you\'ve actually learned anything. No more blurry "artistic" bullshit. 📸🔥'
+      artistName: 'Jeremy Galindo',
+      medium: 'Artist', 
+      personalMessage: 'Jeremy, I still remember your "experimental phase" - we all suffered through it. This gallery is your redemption arc. Show me you\'ve actually learned something since then, or I\'m roasting you in front of everyone. 🔥💀'
     },
-    'STORY-TELLER-2024': {
+    'BROCK-SMASH-2024': {
       suiteId: 'suite-4',
-      artistName: 'David Chen',
-      medium: 'Writer',
-      personalMessage: 'David, your pretentious poetry phase was painful for everyone. This writer\'s retreat better produce something readable. No more "deep" metaphors about rain - we get it, you\'re sad. Write better. ✍️💀'
+      artistName: 'Joshua Brock',
+      medium: 'Artist',
+      personalMessage: 'Josh, you stubborn asshole. Your art was always bold but half the time it looked like you threw paint at a wall and called it deep. This space is for you to prove you can actually finish something good. Don\'t fuck it up. 🎯😈'
     },
-    'CLAY-DREAMS-2024': {
+    'ANDREWS-ATTACK-2024': {
       suiteId: 'suite-5',
-      artistName: 'Isabella Romano',
-      medium: 'Sculptor',
-      personalMessage: 'Bella, I still have that lumpy clay "masterpiece" you made. It looks like a tumor with arms. This space is for your sculptures - let\'s see if you can make something that doesn\'t horrify small children. 🏺😈'
+      artistName: 'Chris Andrews',
+      medium: 'Artist',
+      personalMessage: 'Chris Andrews - not to be confused with the other Chris (Royal King thinks he\'s special). You were always the quiet one with surprisingly good taste. This suite better showcase that you didn\'t peak in your twenties. Surprise me. 🎨🔥'
     },
-    'PIXEL-ARTIST-2024': {
+    'KRIEFELS-KRAZY-2024': {
       suiteId: 'suite-6',
-      artistName: 'James Thompson', 
-      medium: 'Digital Artist',
-      personalMessage: 'James, you were always showing off with your "cutting edge" digital art that looked like Windows 95 screensavers. This virtual space is perfect for you - show me pixel worlds that don\'t give me seizures. 💻🔥'
+      artistName: 'Eric Kriefels', 
+      medium: 'Artist',
+      personalMessage: 'Eric fucking Kriefels - the wildcard. Your art was either brilliant or complete garbage, no in-between. This virtual space is perfect for your chaotic energy. Show me which Eric shows up - genius or disaster. 💻💀'
     }
   };
 
