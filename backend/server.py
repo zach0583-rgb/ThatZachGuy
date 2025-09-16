@@ -83,6 +83,7 @@ app.include_router(api_router)
 app.include_router(auth_router, prefix="/api")
 app.include_router(scenes_router, prefix="/api")
 app.include_router(messages_router, prefix="/api")
+app.include_router(artwork_router, prefix="/api")
 
 app.add_middleware(
     CORSMiddleware,
