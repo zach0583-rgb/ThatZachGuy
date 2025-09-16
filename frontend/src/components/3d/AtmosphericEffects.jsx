@@ -3,20 +3,21 @@ import { useFrame } from '@react-three/fiber';
 import { Cloud, Float, Sparkles } from '@react-three/drei';
 import * as THREE from 'three';
 
-const AtmosphericEffects = () => {
+const AtmosphericEffects = ({ intensity = 1.0, weatherEffect = 'clear' }) => {
   const mistRef = useRef();
   const particlesRef = useRef();
   
-  // Create floating particles for atmosphere
+  // Create floating particles for atmosphere (reduced for mobile)
+  const particleCount = Math.floor(200 * intensity);
   const particlePositions = useMemo(() => {
-    const positions = new Float32Array(200 * 3);
-    for (let i = 0; i < 200; i++) {
+    const positions = new Float32Array(particleCount * 3);
+    for (let i = 0; i < particleCount; i++) {
       positions[i * 3] = (Math.random() - 0.5) * 100;
       positions[i * 3 + 1] = Math.random() * 20;
       positions[i * 3 + 2] = (Math.random() - 0.5) * 100;
     }
     return positions;
-  }, []);
+  }, [particleCount]);
 
   // Animate particles
   useFrame((state) => {
