@@ -40,6 +40,40 @@ const PersonalGallery = ({ artistFriend, position = [0, 0, 0] }) => {
     setRealArtwork(prev => [...prev, newArtwork]);
   };
   
+  // Mock personal art collection for fallback
+  const personalArtwork = {
+    'suite-1': [ 
+      { title: "Sunrise Memories", type: "painting", color: "#FFB6C1", description: "That morning we watched the sunrise together" },
+      { title: "Friendship Portrait", type: "painting", color: "#FF69B4", description: "A painting of our group from 2003" },
+      { title: "Abstract Dreams", type: "painting", color: "#DDA0DD", description: "Inspired by our late-night conversations" }
+    ],
+    'suite-2': [ 
+      { title: "Old Times Blues", type: "music", color: "#87CEEB", description: "A song about missing the good old days" },
+      { title: "Reunion Melody", type: "music", color: "#4169E1", description: "Hopeful tune about reconnecting" },
+      { title: "Youth Symphony", type: "music", color: "#1E90FF", description: "Orchestral piece about our adventures" }
+    ],
+    'suite-3': [ 
+      { title: "Street Art Series", type: "photo", color: "#98FB98", description: "Photos from our urban exploration days" },
+      { title: "Portrait Collection", type: "photo", color: "#32CD32", description: "Black and white portraits of the group" },
+      { title: "Nature Escapes", type: "photo", color: "#00FF7F", description: "Our hiking trips documented" }
+    ],
+    'suite-4': [ 
+      { title: "Friends Forever", type: "writing", color: "#DDA0DD", description: "Short stories based on our experiences" },
+      { title: "Memory Lane", type: "writing", color: "#9370DB", description: "Poetry about growing up together" },
+      { title: "The Artist Circle", type: "writing", color: "#8A2BE2", description: "Novel inspired by our friendship" }
+    ],
+    'suite-5': [ 
+      { title: "Unity Sculpture", type: "sculpture", color: "#FFA07A", description: "Abstract piece representing our bond" },
+      { title: "Memory Vessels", type: "sculpture", color: "#FF6347", description: "Clay pots holding shared memories" },
+      { title: "Friendship Totem", type: "sculpture", color: "#CD5C5C", description: "Wooden sculpture of our group" }
+    ],
+    'suite-6': [ 
+      { title: "Digital Nostalgia", type: "digital", color: "#AFEEEE", description: "Pixel art of our favorite hangout spots" },
+      { title: "VR Memories", type: "digital", color: "#20B2AA", description: "3D recreation of our old art studio" },
+      { title: "Glitch Friends", type: "digital", color: "#48D1CC", description: "Stylized digital portraits of everyone" }
+    ]
+  };
+
   // Use real artwork if available, fall back to mock data
   const artwork = realArtwork.length > 0 ? realArtwork.map(art => ({
     title: art.title,
