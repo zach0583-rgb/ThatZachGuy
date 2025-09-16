@@ -14,43 +14,43 @@ const RoomKeySystem = ({ onRoomAccess }) => {
   const { user } = useAuth();
   const { toast } = useToast();
 
-  // Available room keys for your artist friends
+  // Available room keys for your ASSHOLE artist friends
   const roomKeys = {
     'PAINT-DREAMS-2024': {
       suiteId: 'suite-1',
       artistName: 'Sarah Mitchell',
       medium: 'Painter',
-      personalMessage: 'Hey Sarah! Remember our late-night painting sessions? I created this space for you to share your art again. Hope we can reconnect! 💕'
+      personalMessage: 'Sarah, I made you a virtual art space. Your stuff better not suck as much as it did in college. Still waiting for you to paint something that doesn\'t look like a toddler\'s finger painting. Prove me wrong. 🎨💀'
     },
     'GUITAR-HERO-2024': {
       suiteId: 'suite-2', 
       artistName: 'Marcus Rodriguez',
       medium: 'Musician',
-      personalMessage: 'Marcus! I still have that demo tape you made. This is your virtual studio - share your new music with me! Miss jamming together. 🎸'
+      personalMessage: 'Marcus, I still have that terrible demo tape from \'03. This studio better produce something that doesn\'t make dogs howl. Your chord progressions were trash then - let\'s see if age improved your taste. 🎸😈'
     },
     'LENS-MAGIC-2024': {
       suiteId: 'suite-3',
       artistName: 'Elena Kowalski',
       medium: 'Photographer', 
-      personalMessage: 'Elena! Your photos always captured the soul of our adventures. I made this gallery just for you. Can\'t wait to see your latest work! 📸'
+      personalMessage: 'Elena, remember when you said my photos looked like a blind monkey took them? Well, your composition was shit too. Now you can show me if you\'ve actually learned anything. No more blurry "artistic" bullshit. 📸🔥'
     },
     'STORY-TELLER-2024': {
       suiteId: 'suite-4',
       artistName: 'David Chen',
       medium: 'Writer',
-      personalMessage: 'David, your stories always made us believe in magic. This writer\'s retreat is yours - share your tales again! Our stories live on. ✍️'
+      personalMessage: 'David, your pretentious poetry phase was painful for everyone. This writer\'s retreat better produce something readable. No more "deep" metaphors about rain - we get it, you\'re sad. Write better. ✍️💀'
     },
     'CLAY-DREAMS-2024': {
       suiteId: 'suite-5',
       artistName: 'Isabella Romano',
       medium: 'Sculptor',
-      personalMessage: 'Bella! I still have that clay figure you made of all of us. This space is for your sculptures - let\'s shape new memories together! 🏺'
+      personalMessage: 'Bella, I still have that lumpy clay "masterpiece" you made. It looks like a tumor with arms. This space is for your sculptures - let\'s see if you can make something that doesn\'t horrify small children. 🏺😈'
     },
     'PIXEL-ARTIST-2024': {
       suiteId: 'suite-6',
       artistName: 'James Thompson', 
       medium: 'Digital Artist',
-      personalMessage: 'James! You were always ahead of your time with digital art. This virtual space is perfect for you - show me your pixel worlds! 💻'
+      personalMessage: 'James, you were always showing off with your "cutting edge" digital art that looked like Windows 95 screensavers. This virtual space is perfect for you - show me pixel worlds that don\'t give me seizures. 💻🔥'
     }
   };
 
