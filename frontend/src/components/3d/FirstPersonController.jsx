@@ -1,12 +1,10 @@
 import React, { useRef, useEffect } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
 import { useKeyboardControls, PointerLockControls } from '@react-three/drei';
-import { RigidBody, useRapier } from '@react-three/cannon';
 import * as THREE from 'three';
 
 const FirstPersonController = () => {
-  const playerRef = useRef();
-  const { camera, gl } = useThree();
+  const { camera } = useThree();
   const [, getKeys] = useKeyboardControls();
   
   const velocity = useRef([0, 0, 0]);
@@ -14,7 +12,7 @@ const FirstPersonController = () => {
   const frontVector = useRef(new THREE.Vector3());
   const sideVector = useRef(new THREE.Vector3());
   const speed = useRef(5);
-  const isOnGround = useRef(false);
+  const isOnGround = useRef(true);
 
   // Set initial camera position
   useEffect(() => {
@@ -82,12 +80,6 @@ const FirstPersonController = () => {
       }
     }
 
-    // Atmospheric effects based on position
-    const distanceFromCabin = Math.sqrt(
-      camera.position.x * camera.position.x + 
-      camera.position.z * camera.position.z
-    );
-    
     // Add subtle head bob when walking
     if (forward || backward || leftward || rightward) {
       const bobIntensity = 0.02;
@@ -96,11 +88,7 @@ const FirstPersonController = () => {
     }
   });
 
-  return (
-    <>
-      <PointerLockControls />
-    </>
-  );
+  return <PointerLockControls />;
 };
 
 export default FirstPersonController;
