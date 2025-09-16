@@ -6,7 +6,39 @@ import ArtUpload from '../ArtUpload';
 
 const PersonalGallery = ({ artistFriend, position = [0, 0, 0] }) => {
   const [selectedArt, setSelectedArt] = useState(0);
+  const [realArtwork, setRealArtwork] = useState([]);
+  const [loading, setLoading] = useState(true);
   const galleryRef = useRef();
+  
+  // Fetch real artwork from backend
+  useEffect(() => {
+    const fetchArtwork = async () => {
+      try {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/api/suites/${artistFriend.id}/artworks`, {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem('token')}`
+          }
+        });
+        
+        if (response.ok) {
+          const artwork = await response.json();
+          setRealArtwork(artwork);
+        }
+      } catch (error) {
+        console.error('Failed to fetch artwork:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    if (artistFriend.id) {
+      fetchArtwork();
+    }
+  }, [artistFriend.id]);
+  
+  const handleUploadSuccess = (newArtwork) => {
+    setRealArtwork(prev => [...prev, newArtwork]);
+  };
   
   // Mock personal art collection for each friend
   const personalArtwork = {
