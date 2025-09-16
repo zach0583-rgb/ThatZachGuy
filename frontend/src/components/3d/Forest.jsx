@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
 import { Cylinder, Sphere, Icosahedron } from '@react-three/drei';
-import { RigidBody } from '@react-three/cannon';
 import * as THREE from 'three';
 
 const Tree = ({ position, scale = 1 }) => {
@@ -14,60 +13,58 @@ const Tree = ({ position, scale = 1 }) => {
   
   return (
     <group position={position} scale={scale}>
-      <RigidBody type="fixed">
-        {/* Trunk */}
-        <Cylinder 
-          args={[0.2, 0.3, trunkHeight]} 
-          position={[0, trunkHeight / 2, 0]} 
-          castShadow
-        >
-          <meshStandardMaterial 
-            color={trunkColor} 
-            roughness={0.9}
-            bumpScale={0.1} 
-          />
-        </Cylinder>
-        
-        {/* Foliage layers for depth */}
-        <Icosahedron 
-          args={[foliageSize]} 
-          position={[0, trunkHeight + foliageSize * 0.5, 0]} 
-          castShadow
-        >
-          <meshStandardMaterial 
-            color={foliageColor} 
-            roughness={0.8}
-            transparent={true}
-            opacity={0.9}
-          />
-        </Icosahedron>
-        
-        <Icosahedron 
-          args={[foliageSize * 0.7]} 
-          position={[0, trunkHeight + foliageSize * 1.2, 0]} 
-          castShadow
-        >
-          <meshStandardMaterial 
-            color={foliageColor} 
-            roughness={0.8}
-            transparent={true}
-            opacity={0.8}
-          />
-        </Icosahedron>
-        
-        <Icosahedron 
-          args={[foliageSize * 0.4]} 
-          position={[0, trunkHeight + foliageSize * 1.8, 0]} 
-          castShadow
-        >
-          <meshStandardMaterial 
-            color={foliageColor} 
-            roughness={0.8}
-            transparent={true}
-            opacity={0.9}
-          />
-        </Icosahedron>
-      </RigidBody>
+      {/* Trunk */}
+      <Cylinder 
+        args={[0.2, 0.3, trunkHeight]} 
+        position={[0, trunkHeight / 2, 0]} 
+        castShadow
+      >
+        <meshStandardMaterial 
+          color={trunkColor} 
+          roughness={0.9}
+          bumpScale={0.1} 
+        />
+      </Cylinder>
+      
+      {/* Foliage layers for depth */}
+      <Icosahedron 
+        args={[foliageSize]} 
+        position={[0, trunkHeight + foliageSize * 0.5, 0]} 
+        castShadow
+      >
+        <meshStandardMaterial 
+          color={foliageColor} 
+          roughness={0.8}
+          transparent={true}
+          opacity={0.9}
+        />
+      </Icosahedron>
+      
+      <Icosahedron 
+        args={[foliageSize * 0.7]} 
+        position={[0, trunkHeight + foliageSize * 1.2, 0]} 
+        castShadow
+      >
+        <meshStandardMaterial 
+          color={foliageColor} 
+          roughness={0.8}
+          transparent={true}
+          opacity={0.8}
+        />
+      </Icosahedron>
+      
+      <Icosahedron 
+        args={[foliageSize * 0.4]} 
+        position={[0, trunkHeight + foliageSize * 1.8, 0]} 
+        castShadow
+      >
+        <meshStandardMaterial 
+          color={foliageColor} 
+          roughness={0.8}
+          transparent={true}
+          opacity={0.9}
+        />
+      </Icosahedron>
     </group>
   );
 };
