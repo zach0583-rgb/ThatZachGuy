@@ -15,6 +15,7 @@ from datetime import datetime
 from routes.auth import router as auth_router
 from routes.scenes import router as scenes_router
 from routes.messages import router as messages_router
+from routes.artwork import router as artwork_router
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
