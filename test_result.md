@@ -131,40 +131,40 @@ backend:
 
 frontend:
   - task: "Remove TZG from room keys display"
-    implemented: false
-    working: "NA"
+    implemented: true
+    working: true
     file: "frontend/src/components/3d/RoomKeySystem.jsx"
     stuck_count: 0
-    priority: "high"
+    priority: "high" 
     needs_retesting: false
     status_history:
-        -working: "NA"
+        -working: true
         -agent: "main"
-        -comment: "Need to remove TZG references from key display components"
+        -comment: "TZG successfully removed from key display components - keys now show only room numbers and friend initials"
 
   - task: "Simple art upload interface for rooms"
-    implemented: false
+    implemented: true
     working: "NA"
-    file: "frontend/src/components/3d/ArtSharingSystem.jsx"
+    file: "frontend/src/components/ArtUpload.jsx"
     stuck_count: 0
     priority: "high"
-    needs_retesting: false
+    needs_retesting: true
     status_history:
         -working: "NA"
         -agent: "main"
-        -comment: "Create drag & drop art upload for artist suites"
+        -comment: "Created drag & drop art upload component integrated with personal gallery system"
 
   - task: "PWA setup with owl icon"
-    implemented: false
+    implemented: true
     working: "NA"
     file: "frontend/public/manifest.json"
     stuck_count: 0
     priority: "medium"
-    needs_retesting: false
+    needs_retesting: true
     status_history:
         -working: "NA"
         -agent: "main"
-        -comment: "Create PWA manifest with TZG app name and owl in green tree icon"
+        -comment: "Created PWA manifest, service worker, and owl in green tree icon. App now installable as TZG"
 
 metadata:
   created_by: "main_agent"
