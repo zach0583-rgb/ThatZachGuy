@@ -4,7 +4,7 @@ import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import ArtUpload from '../ArtUpload';
 
-const PersonalGallery = ({ artistFriend, position = [0, 0, 0] }) => {
+const PersonalGallery = ({ artistFriend, position = [0, 0, 0], onUploadSuccess }) => {
   const [selectedArt, setSelectedArt] = useState(0);
   const [realArtwork, setRealArtwork] = useState([]);
   const [loading, setLoading] = useState(true);
