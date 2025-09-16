@@ -1,7 +1,8 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Box, Plane, Text, Sphere, Ring, Cylinder } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
+import ArtUpload from '../ArtUpload';
 
 const PersonalGallery = ({ artistFriend, position = [0, 0, 0] }) => {
   const [selectedArt, setSelectedArt] = useState(0);
