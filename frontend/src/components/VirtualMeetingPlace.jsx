@@ -1,12 +1,14 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { Button } from './ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from './ui/tabs';
 import { Input } from './ui/input';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { Badge } from './ui/badge';
-import { Separator } from './ui/separator';
 import { ScrollArea } from './ui/scroll-area';
+import { useToast } from '../hooks/use-toast';
+import { useAuth } from '../contexts/AuthContext';
+import { sceneAPI, messagesAPI } from '../utils/api';
 import { 
   Users, 
   MessageCircle, 
@@ -15,27 +17,87 @@ import {
   Save, 
   Share2, 
   Settings,
-  Volume2,
   Send,
   Plus,
   Move,
   Trash2,
-  Palette
+  LogOut
 } from 'lucide-react';
 import ObjectsLibrary from './ObjectsLibrary';
 import SceneCanvas from './SceneCanvas';
-import ChatPanel from './ChatPanel';
-import MediaPanel from './MediaPanel';
-import UserPanel from './UserPanel';
 
 const VirtualMeetingPlace = () => {
   const [activeTab, setActiveTab] = useState('objects');
   const [selectedTool, setSelectedTool] = useState('move');
-  const [sceneName, setSceneName] = useState('My Virtual Space');
+  const [currentScene, setCurrentScene] = useState(null);
   const [sceneObjects, setSceneObjects] = useState([]);
   const [sceneBackground, setSceneBackground] = useState('modern-office');
   const [isEditMode, setIsEditMode] = useState(true);
+  const [messages, setMessages] = useState([]);
+  const [newMessage, setNewMessage] = useState('');
+  const [loading, setLoading] = useState(true);
   const canvasRef = useRef(null);
+  
+  const { user, logout } = useAuth();
+  const { toast } = useToast();
+
+  // Load or create initial scene
+  useEffect(() => {
+    const initializeScene = async () => {
+      try {
+        setLoading(true);
+        
+        // Try to get user's scenes
+        const response = await sceneAPI.getScenes();
+        const scenes = response.data;
+        
+        if (scenes.length > 0) {
+          // Load the first scene
+          const scene = scenes[0];
+          setCurrentScene(scene);
+          setSceneObjects(scene.objects || []);
+          setSceneBackground(scene.background || 'modern-office');
+          
+          // Load messages for this scene
+          loadMessages(scene.id);
+        } else {
+          // Create a new scene
+          const newScene = await sceneAPI.createScene({
+            name: `${user.name}'s Virtual Space`,
+            description: 'My first virtual meeting space',
+            background: 'modern-office',
+            is_public: false
+          });
+          
+          setCurrentScene(newScene.data);
+          setSceneObjects([]);
+          setSceneBackground('modern-office');
+        }
+      } catch (error) {
+        console.error('Failed to initialize scene:', error);
+        toast({
+          title: "Error",
+          description: "Failed to load your virtual space. Please try again.",
+          variant: "destructive"
+        });
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (user) {
+      initializeScene();
+    }
+  }, [user, toast]);
+
+  const loadMessages = async (sceneId) => {
+    try {
+      const response = await messagesAPI.getMessages(sceneId);
+      setMessages(response.data || []);
+    } catch (error) {
+      console.error('Failed to load messages:', error);
+    }
+  };
 
   const handleAddObject = useCallback((objectType, position = { x: 100, y: 100 }) => {
     const newObject = {
@@ -44,7 +106,7 @@ const VirtualMeetingPlace = () => {
       position,
       rotation: 0,
       scale: 1,
-      zIndex: sceneObjects.length
+      z_index: sceneObjects.length
     };
     setSceneObjects(prev => [...prev, newObject]);
   }, [sceneObjects.length]);
@@ -59,24 +121,77 @@ const VirtualMeetingPlace = () => {
     setSceneObjects(prev => prev.filter(obj => obj.id !== objectId));
   }, []);
 
-  const handleSaveScene = () => {
-    const sceneData = {
-      name: sceneName,
-      background: sceneBackground,
-      objects: sceneObjects,
-      timestamp: new Date().toISOString()
-    };
-    // Mock save - will be replaced with actual API call
-    console.log('Saving scene:', sceneData);
-    alert('Scene saved successfully!');
+  const handleSaveScene = async () => {
+    if (!currentScene) return;
+    
+    try {
+      await sceneAPI.updateScene(currentScene.id, {
+        objects: sceneObjects,
+        background: sceneBackground
+      });
+      
+      toast({
+        title: "Success",
+        description: "Scene saved successfully!"
+      });
+    } catch (error) {
+      console.error('Failed to save scene:', error);
+      toast({
+        title: "Error",
+        description: "Failed to save scene. Please try again.",
+        variant: "destructive"
+      });
+    }
   };
 
   const handleShareScene = () => {
-    // Mock share functionality
-    const shareLink = `${window.location.origin}/scene/${Date.now()}`;
+    if (!currentScene) return;
+    
+    const shareLink = `${window.location.origin}/scene/${currentScene.id}`;
     navigator.clipboard.writeText(shareLink);
-    alert(`Scene link copied to clipboard: ${shareLink}`);
+    toast({
+      title: "Success",
+      description: "Scene link copied to clipboard!"
+    });
   };
+
+  const handleSendMessage = async () => {
+    if (!newMessage.trim() || !currentScene) return;
+
+    try {
+      const response = await messagesAPI.sendMessage(currentScene.id, {
+        content: newMessage,
+        type: 'text'
+      });
+      
+      setMessages(prev => [...prev, response.data]);
+      setNewMessage('');
+    } catch (error) {
+      console.error('Failed to send message:', error);
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again.",
+        variant: "destructive"
+      });
+    }
+  };
+
+  const handleLogout = async () => {
+    await logout();
+  };
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 flex items-center justify-center">
+        <div className="text-center">
+          <div className="w-16 h-16 border-4 border-purple-200 border-t-purple-600 rounded-full animate-spin mx-auto mb-4"></div>
+          <h2 className="text-xl font-semibold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+            Loading your virtual space...
+          </h2>
+        </div>
+      </div>
+    );
+  }
 
   const tools = [
     { id: 'move', icon: Move, label: 'Move' },
@@ -93,22 +208,23 @@ const VirtualMeetingPlace = () => {
             <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
               Virtual Meeting Place
             </h1>
-            <Input
-              value={sceneName}
-              onChange={(e) => setSceneName(e.target.value)}
-              className="max-w-xs"
-              placeholder="Scene name"
-            />
+            <div className="text-sm text-gray-600">
+              Welcome, {user?.name}!
+            </div>
           </div>
           
           <div className="flex items-center space-x-2">
-            <Button variant="outline" onClick={handleSaveScene}>
+            <Button variant="outline" onClick={handleSaveScene} disabled={!currentScene}>
               <Save className="h-4 w-4 mr-2" />
               Save Scene
             </Button>
-            <Button onClick={handleShareScene}>
+            <Button onClick={handleShareScene} disabled={!currentScene}>
               <Share2 className="h-4 w-4 mr-2" />
               Share
+            </Button>
+            <Button variant="outline" onClick={handleLogout}>
+              <LogOut className="h-4 w-4 mr-2" />
+              Logout
             </Button>
           </div>
         </div>
@@ -118,7 +234,7 @@ const VirtualMeetingPlace = () => {
         {/* Left Sidebar */}
         <div className="w-80 border-r bg-white/50 backdrop-blur-sm dark:bg-slate-900/50">
           <Tabs value={activeTab} onValueChange={setActiveTab} className="h-full">
-            <TabsList className="grid w-full grid-cols-4 m-4">
+            <TabsList className="grid w-full grid-cols-3 m-4">
               <TabsTrigger value="objects" className="text-xs">
                 <Plus className="h-4 w-4 mr-1" />
                 Objects
@@ -131,10 +247,6 @@ const VirtualMeetingPlace = () => {
                 <MessageCircle className="h-4 w-4 mr-1" />
                 Chat
               </TabsTrigger>
-              <TabsTrigger value="media" className="text-xs">
-                <Music className="h-4 w-4 mr-1" />
-                Media
-              </TabsTrigger>
             </TabsList>
 
             <div className="px-4 pb-4 h-[calc(100%-60px)]">
@@ -143,15 +255,77 @@ const VirtualMeetingPlace = () => {
               </TabsContent>
               
               <TabsContent value="users" className="h-full mt-0">
-                <UserPanel />
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="text-sm">Collaborators</CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-3">
+                      <div className="flex items-center space-x-3 p-3 bg-blue-50 rounded-lg">
+                        <Avatar className="h-8 w-8">
+                          <AvatarFallback>{user?.name?.charAt(0) || 'U'}</AvatarFallback>
+                        </Avatar>
+                        <div className="flex-1">
+                          <div className="flex items-center space-x-2">
+                            <span className="font-medium text-sm">{user?.name}</span>
+                            <Badge variant="secondary" className="text-xs">Owner</Badge>
+                          </div>
+                          <p className="text-xs text-gray-500">Online</p>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               </TabsContent>
               
               <TabsContent value="chat" className="h-full mt-0">
-                <ChatPanel />
-              </TabsContent>
-              
-              <TabsContent value="media" className="h-full mt-0">
-                <MediaPanel />
+                <Card className="h-full flex flex-col">
+                  <CardHeader className="pb-3">
+                    <CardTitle className="text-sm">Chat</CardTitle>
+                  </CardHeader>
+                  <CardContent className="flex-1 flex flex-col p-0">
+                    <ScrollArea className="flex-1 p-4">
+                      <div className="space-y-4">
+                        {messages.map((message) => (
+                          <div key={message.id} className="flex space-x-3">
+                            <Avatar className="h-8 w-8">
+                              <AvatarFallback>
+                                {message.sender?.name?.charAt(0) || 'U'}
+                              </AvatarFallback>
+                            </Avatar>
+                            <div className="flex-1">
+                              <div className="flex items-center space-x-2 mb-1">
+                                <span className="text-xs font-medium">
+                                  {message.sender?.name || 'Unknown'}
+                                </span>
+                                <span className="text-xs text-gray-400">
+                                  {new Date(message.timestamp).toLocaleTimeString()}
+                                </span>
+                              </div>
+                              <div className="bg-gray-100 rounded-lg px-3 py-2">
+                                {message.content}
+                              </div>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </ScrollArea>
+                    
+                    <div className="p-4 border-t">
+                      <div className="flex space-x-2">
+                        <Input
+                          value={newMessage}
+                          onChange={(e) => setNewMessage(e.target.value)}
+                          placeholder="Type a message..."
+                          onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
+                        />
+                        <Button size="sm" onClick={handleSendMessage}>
+                          <Send className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
               </TabsContent>
             </div>
           </Tabs>
