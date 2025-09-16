@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field, EmailStr
-from typing import Optional, List
+from typing import Optional, List, Any
 from datetime import datetime
 from bson import ObjectId
 import bcrypt
@@ -17,8 +17,9 @@ class PyObjectId(ObjectId):
         return ObjectId(v)
 
     @classmethod
-    def __modify_schema__(cls, field_schema):
+    def __get_pydantic_json_schema__(cls, field_schema: dict, handler) -> dict:
         field_schema.update(type="string")
+        return field_schema
 
 
 class User(BaseModel):
