@@ -183,10 +183,9 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Art upload API for rooms"
     - "Simple art upload interface for rooms"
-    - "PWA setup with owl icon"
-  stuck_tasks: []
+  stuck_tasks: 
+    - "Simple art upload interface for rooms"
   test_all: false
   test_priority: "high_first"
 
