@@ -220,19 +220,47 @@ const ArtistSuites = ({ position = [0, 5, 0] }) => {
           </Text>
         </group>
         
-        {/* Room Key Display */}
+        {/* Twin Peaks Hotel Key Display */}
         <group position={[0, 0.3, 3.5]}>
-          <Box args={[2, 0.3, 0.05]} castShadow>
-            <meshStandardMaterial color="#1a1a1a" />
+          {/* Brass Key */}
+          <group>
+            <Cylinder args={[0.03, 0.03, 0.4]} position={[-0.3, 0, 0]} rotation={[0, 0, Math.PI/2]} castShadow>
+              <meshStandardMaterial color="#B8860B" metalness={0.8} roughness={0.3} />
+            </Cylinder>
+            <Box args={[0.15, 0.08, 0.02]} position={[-0.5, 0, 0]} castShadow>
+              <meshStandardMaterial color="#B8860B" metalness={0.8} roughness={0.3} />
+            </Box>
+            {/* Key teeth */}
+            <Box args={[0.03, 0.02, 0.02]} position={[-0.52, -0.03, 0]} castShadow>
+              <meshStandardMaterial color="#B8860B" metalness={0.8} roughness={0.3} />
+            </Box>
+            <Box args={[0.02, 0.02, 0.02]} position={[-0.51, 0.03, 0]} castShadow>
+              <meshStandardMaterial color="#B8860B" metalness={0.8} roughness={0.3} />
+            </Box>
+          </group>
+          
+          {/* Green Twin Peaks Keychain */}
+          <Box args={[0.4, 0.25, 0.03]} position={[0.1, 0, 0]} castShadow>
+            <meshStandardMaterial color="#2F4F2F" roughness={0.7} />
           </Box>
+          
           <Text
-            position={[0, 0, 0.03]}
-            fontSize={0.08}
-            color="#FFD700"
+            position={[0.1, 0.05, 0.02]}
+            fontSize={0.06}
+            color="#FFFFFF"
             anchorX="center"
             anchorY="middle"
           >
-            🗝️ Key: {friend.roomKey}
+            {friend.roomNumber}
+          </Text>
+          <Text
+            position={[0.1, -0.05, 0.02]}
+            fontSize={0.04}
+            color="#CCCCCC"
+            anchorX="center"
+            anchorY="middle"
+          >
+            TZG
           </Text>
         </group>
         
