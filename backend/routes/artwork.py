@@ -23,17 +23,8 @@ def get_database():
 
 async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)):
     """Get current user from JWT token"""
-    token = credentials.credentials
-    user_data = verify_token(token)
-    if not user_data:
-        raise HTTPException(status_code=401, detail="Invalid token")
-    
-    db = get_database()
-    user = await db.users.find_one({"email": user_data["email"]})
-    if not user:
-        raise HTTPException(status_code=404, detail="User not found")
-    
-    return User(**user)
+    from auth import get_current_user as auth_get_current_user
+    return await auth_get_current_user(credentials)
 
 
 # Predefined suite information for the artist friends
